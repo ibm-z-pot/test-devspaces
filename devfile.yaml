@@ -7,7 +7,6 @@ projects:
       location: 'https://github.com/ibm-z-pot/zc-pot-api'
       startPoint: main
       type: git
-    clonePath: resources/my-project
 components:
   - mountSources: true
     endpoints:
@@ -23,7 +22,7 @@ components:
     alias: zosconnect
     image: 'icr.io/zosconnect/ibm-zcon-designer:3.0.63'
     env:
-      - value: resources
+      - value: /apiProject
         name: ZCON_DESIGNER_PROJECT
   - id: redhat/vscode-yaml/latest
     type: chePlugin
