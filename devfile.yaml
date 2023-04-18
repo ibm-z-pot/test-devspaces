@@ -1,10 +1,10 @@
 apiVersion: 1.0.0
 metadata:
-  name: sf-test-01
+  name: zc-demo-api
 projects:
-  - name: my-project-resourse
+  - name: zc-demo-api
     source:
-      location: 'https://github.com/ibm-z-pot/zc-pot-api'
+      location: 'https://github.com/ibm-z-pot/zc-demo-api'
       startPoint: main
       type: git
 components:
@@ -20,9 +20,9 @@ components:
     memoryLimit: 4927M
     type: dockerimage
     alias: zosconnect
-    image: 'icr.io/zosconnect/ibm-zcon-designer:3.0.63'
+    image: 'icr.io/zosconnect/ibm-zcon-designer:3.0.67'
     env:
-      - value: /apiProject
+      - value: projects/zc-demo-api/apiProject
         name: ZCON_DESIGNER_PROJECT
   - id: redhat/vscode-yaml/latest
     type: chePlugin
