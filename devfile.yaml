@@ -11,9 +11,9 @@ components:
   - mountSources: true
     endpoints:
       - attributes:
-          cookiesAuthEnabled: 'true'
+          cookiesAuthEnabled: 'false'
           public: 'true'
-          secure: 'true'
+          secure: 'false'
           path: /zosConnect/designer/
         name: zosconnect-ui-endpoint
         port: 9080
