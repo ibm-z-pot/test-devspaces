@@ -1,30 +1,31 @@
-apiVersion: 1.0.0
+schemaVersion: 2.1.0
 metadata:
   name: zc-demo-api
+attributes:
+  controller.devfile.io/storage-type: ephemeral
 projects:
-  - name: zc-demo-api
-    source:
-      location: 'https://github.com/ibm-z-pot/zc-demo-api'
-      startPoint: main
-      type: git
+  - git:
+      checkoutFrom:
+        revision: main
+      remotes:
+        origin: 'https://github.com/ibm-z-pot/zc-demo-api'
+    name: zc-demo-api
 components:
-  - mountSources: true
-    endpoints:
-      - attributes:
-          cookiesAuthEnabled: 'false'
-          public: 'true'
-          secure: 'false'
-          path: /zosConnect/designer/
-        name: zosconnect-ui-endpoint
-        port: 9080
-    memoryLimit: 4927M
-    type: dockerimage
-    alias: zosconnect
-    image: 'icr.io/zosconnect/ibm-zcon-designer:3.0.67'
-    env:
-      - value: projects/zc-demo-api/apiProject
-        name: ZCON_DESIGNER_PROJECT
-  - id: redhat/vscode-yaml/latest
-    type: chePlugin
-  - id: redhat/vscode-xml/latest
-    type: chePlugin
+    - name: che-workspace
+      container:
+        image: 'registry.redhat.io/devspaces/udi-rhel8@sha256:99ff1b5c541855e4cf368816c4bcdcdc86d32304023f72c4443213a4032ef05b'
+        memoryLimit: 1024Mi        
+    - name: zosconnect
+      container:
+        endpoints:
+          - exposure: public
+            name: zosconnect-ui
+            path: /zosConnect/designer/
+            protocol: http
+            targetPort: 9080
+        env:
+          - name: ZCON_DESIGNER_PROJECT
+            value: /projects/zc-demo-api/apiProject
+        image: 'icr.io/zosconnect/ibm-zcon-designer:3.0.68'
+        memoryLimit: 4927M
+        mountSources: true
