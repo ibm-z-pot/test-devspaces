@@ -27,7 +27,7 @@ components:
           - name: ZCON_DESIGNER_PROJECT
             value: /projects/zc-demo-api
           - name: HTTP_PORT
-            value: 9080
+            value: '9080'
         image: 'icr.io/zosconnect/ibm-zcon-designer:3.0.68'
         memoryLimit: 4927M
         mountSources: true
