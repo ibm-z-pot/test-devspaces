@@ -21,8 +21,8 @@ components:
           - exposure: public
             name: zosconnect-ui
             path: /zosConnect/designer/
-            protocol: http
-            targetPort: 9080
+            protocol: https
+            targetPort: 9443
         env:
           - name: ZCON_DESIGNER_PROJECT
             value: /projects/zc-demo-api
