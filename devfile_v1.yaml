@@ -15,7 +15,7 @@ components:
           public: 'true'
           secure: 'false'
           path: /zosConnect/designer/
-        name: zosconnect-ui-endpoint
+        name: zosconnect-ui
         port: 9080
     memoryLimit: 4927M
     type: dockerimage
