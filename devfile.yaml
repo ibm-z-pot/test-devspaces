@@ -8,26 +8,20 @@ projects:
       checkoutFrom:
         revision: main
       remotes:
-        origin: 'https://github.com/ibm-z-pot/zc-demo-api'
+        origin: 'https://github.com/ibm-z-pot/zc-demo-api.git'
     name: zc-demo-api
-components:
-    - name: che-workspace
-      container:
-        image: 'registry.redhat.io/devspaces/udi-rhel8@sha256:99ff1b5c541855e4cf368816c4bcdcdc86d32304023f72c4443213a4032ef05b'
-        memoryLimit: 1024Mi        
+components:        
     - name: zosconnect
       container:
         endpoints:
           - exposure: public
             name: zosconnect-ui
             path: /zosConnect/designer/
-            protocol: http
-            targetPort: 9080
+            protocol: https
+            targetPort: 9443
         env:
           - name: ZCON_DESIGNER_PROJECT
             value: /projects/zc-demo-api
-          - name: HTTP_PORT
-            value: '9080'
-        image: 'icr.io/zosconnect/ibm-zcon-designer:3.0.68'
+        image: 'icr.io/zosconnect/ibm-zcon-designer:3.0.70'
         memoryLimit: 4927M
         mountSources: true
